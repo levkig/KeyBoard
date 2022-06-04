@@ -1,0 +1,151 @@
+<html>
+<style>
+    .MEGAULTRABUTTTTON {
+        color: rgb(2, 2, 2);
+        text-align: center;
+        width: 137px;
+        height: 72px;
+        font-family: "Times New Roman", Times, serif;
+        font-size: x-large;
+    }
+
+    .space {
+        width: 50vw;
+    }
+
+    #main_button_container {
+        width: 95%;
+        font-family: "Times New Roman", Times, serif;
+        font-size: x-large;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: auto;
+    }
+
+    #container {
+        display: flex;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    #area {
+        width: 100%;
+        height: 240px;
+        font-size: 40px;
+    }
+
+    #right_container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #left_container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #space_container {
+        display: flex;
+        justify-content: center;
+    }
+
+    #containerBIG {
+        width: 95%;
+        height: 95%;
+        border: 12px solid #B22222;
+        border-radius: 10px;
+        margin-top: 15px;
+        border-color: rgb(180, 42, 42);
+        font-family: "Times New Roman", Times, serif;
+        font-size: x-large;
+    }
+</style>
+<div id="containerBig">
+    <textarea id="area" rows="5" cols="40"></textarea>
+    <div id="container">
+        <div id="left_container">
+            <button class="MEGAULTRABUTTTTON qwerty" onclick="funcCaps(event)">CapsLock</button>
+            <button class="MEGAULTRABUTTTTON qwerty" onkeypress="func3(event)">L Shift</button>
+            <button class="MEGAULTRABUTTTTON qwerty" onclick="funcBack(event)"
+                onkeyup="funcBack1(event)">Backspace</button>
+        </div>
+        <div id="main_button_container">
+
+        </div>
+        <div id="right_container">
+            <button class="MEGAULTRABUTTTTON qwerty">ENTER</button>
+            <button class="MEGAULTRABUTTTTON qwerty" onkeypress="func3(event)">R Shift</button>
+            <button class="MEGAULTRABUTTTTON qwerty" onclick="func4(event)">DEL</button>
+        </div>
+    </div>
+    <div id="space_container">
+        <button class="MEGAULTRABUTTTTON space" onclick="funcSpace(event)" onkeypress="funcSpace(event)"> </button>
+    </div>
+</div>
+
+</html>
+<script>
+    let caps = false
+    function init() {
+        arr = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"]
+        for (i of arr) {
+            const key = document.createElement('button');
+            key.addEventListener("keyup", funcKey);
+            key.addEventListener("click", funcType);
+            key.innerHTML = i;
+            key.classList.add("MEGAULTRABUTTTTON");
+            const container = document.getElementById('main_button_container');
+            container.appendChild(key);
+        }
+    }
+    function funcType(event) {
+        const area = document.getElementById('area');
+        if (caps === true) {
+            area.innerHTML = area.innerHTML + event.target.innerHTML.toUpperCase()
+        }
+        else {
+            area.innerHTML = area.innerHTML + event.target.innerHTML
+        }
+    }
+    function funcKey(event) {
+        const area = document.getElementById('area');
+        if (event.key.length === 1) {
+
+
+            if (caps === true) {
+                area.innerHTML = area.innerHTML + event.key.toUpperCase()
+            }
+            else {
+                area.innerHTML = area.innerHTML + event.key
+            }
+        }
+        else if (event.key === "Backspace") {
+            const area = document.getElementById('area');
+            const area1 = area.innerHTML.slice(0, area.innerHTML.length - 1);
+            area.innerHTML = area1;
+        }
+    }
+    function funcSpace(event) {
+        const area = document.getElementById('area');
+        area.innerHTML = area.innerHTML + event.target.innerHTML
+    }
+    function funcBack(event) {
+        const area = document.getElementById('area');
+        const area1 = area.innerHTML.slice(0, area.innerHTML.length - 1);
+        area.innerHTML = area1;
+    }
+    function func3(event) {
+        if (event.shiftKey) {
+            const area = document.getElementById('area');
+            area.innerHTML = event.target.innerHTML.toUpperCase();
+        }
+    }
+    function func4(event) {
+        area.innerHTML = ""
+    }
+    function funcCaps(event) {
+        caps = !caps;
+    }
+    window.onload = () => init();
+</script>
