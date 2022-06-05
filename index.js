@@ -6,6 +6,7 @@
             const key = document.createElement('button');
             key.addEventListener("keyup", funcKey);
             key.addEventListener("click", funcType);
+            key.addEventListener("click", Sound);
             key.innerHTML = i;
             key.classList.add("MEGAULTRABUTTTTON");
             const container = document.getElementById('main_button_container');
