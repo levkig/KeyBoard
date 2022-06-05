@@ -60,7 +60,7 @@
     function funcCaps(event) {
         caps = !caps;
     }
-    function soundClick() {
+    function Sound() {
         var audio = new Audio(); 
         audio.src = 'Keyboard.mp3'; 
         audio.autoplay = true; 
